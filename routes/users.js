@@ -98,14 +98,14 @@ router.put('/userUpdate', async (req, res) => {
 })
 
 //GET THE USERS DETAILS AFTER LOGIN
-router.get('/about', jwtAuth, (req, res) => {
+router.post('/about', jwtAuth, (req, res) => {
   res.json({ message: req.rootUser })
   // res.send(req.rootUser)
 })
 
 
 //GET METHODS FOR LOGOUT TO CLEAR COOKIES
-router.get('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => {
   res.clearCookie('jwt', { path: '/' });
   res.status(200).json({ message: `logout successfull` })
 })

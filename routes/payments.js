@@ -72,9 +72,9 @@ router.get('/product/:_id', async (req, res) => {
 
 
 //Get methods used to details of users order list
-router.get('/getdetails', jauth, async function (req, res, next) {
+router.post('/getdetails', jauth, async function (req, res) {
     try {
-        const history = await Payments.find({ user_id: req.rootUser._id })
+        const history = await Payments.find({ token: req?.body?.token })
 
         res.status(200).json({ message: history })
     } catch (err) {

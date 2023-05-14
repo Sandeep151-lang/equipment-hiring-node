@@ -3,8 +3,9 @@ const User = require('../model/userSchema');
 
 
 const jwtAuth = async (req, res, next) => {
+    
     try {
-        const token = req.cookies.jwt;
+        const token = req?.body?.token;
         const verifyToken = jwt.verify(token, 'sandeepnandanwarfullstackdeveloper');
         // const rootUser = User.findOne({ _id: verifyToken._id, "tokens.token": token });
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
